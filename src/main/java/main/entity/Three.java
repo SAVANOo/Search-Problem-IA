@@ -1,47 +1,55 @@
 package main.entity;
 
 public class Three {
-    public Node oradea = new Node("oradea");
+    public final Node oradea = new Node("oradea");
 
-    public Node zerind = new Node("zerind");
+    public final Node zerind = new Node("zerind");
 
-    public Node arad = new Node("arad");
+    public final Node arad = new Node("arad");
 
-    public Node sibiu = new Node("sibiu");
+    public final Node sibiu = new Node("sibiu");
 
-    public Node timisoara = new Node("timisoara");
+    public final Node timisoara = new Node("timisoara");
 
-    public Node lugoj = new Node("lugoj");
+    public final Node lugoj = new Node("lugoj");
 
-    public Node mehadia = new Node("mehadia");
+    public final Node mehadia = new Node("mehadia");
 
-    public Node drobeta = new Node("drobeta");
+    public final Node drobeta = new Node("drobeta");
 
-    public Node craiova = new Node("craiova");
+    public final Node craiova = new Node("craiova");
 
-    public Node riminicu_vilcea = new Node("riminicu vilcea");
+    public final Node riminicu_vilcea = new Node("riminicu vilcea");
 
-    public Node pitesti = new Node("pitesti");
+    public final Node pitesti = new Node("pitesti");
 
-    public Node fagaras = new Node("fagaras");
+    public final Node fagaras = new Node("fagaras");
 
-    public Node bucharest = new Node("bucharest");
+    public final Node bucharest = new Node("bucharest");
 
-    public Node giurgiu = new Node("giurgiu");
+    public final Node giurgiu = new Node("giurgiu");
 
-    public Node urziceni = new Node("urziceni");
+    public final Node urziceni = new Node("urziceni");
 
-    public Node vaslui = new Node("vaslui");
+    public final Node vaslui = new Node("vaslui");
 
-    public Node iasi = new Node("iasi");
+    public final Node iasi = new Node("iasi");
 
-    public Node neamt = new Node("neamt");
+    public final Node neamt = new Node("neamt");
 
-    public Node hirsova = new Node("hirsova");
+    public final Node hirsova = new Node("hirsova");
 
-    public Node eforie = new Node("eforie");
+    public final Node eforie = new Node("eforie");
 
-    public Three() {
+    private static Three instance;
+
+    public static Three getInstance() {
+        if (instance == null) instance = new Three();
+
+        return instance;
+    }
+
+    private Three() {
         this.oradea.addNeighbor(zerind, 71);
         this.oradea.addNeighbor(sibiu, 151);
 
