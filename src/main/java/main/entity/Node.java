@@ -24,4 +24,14 @@ public class Node {
     public void addNeighbor(Node neighbor, Integer distance) {
         this.neighborList.add(new Neighbor(neighbor, distance));
     }
+
+    public Neighbor getNeighbor(Node search) {
+        for (Neighbor neighbor : this.getNeighborList()) {
+            if (neighbor.getNode().equals(search)) {
+                return neighbor;
+            }
+        }
+
+        return null;
+    }
 }
