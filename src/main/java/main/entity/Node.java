@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Node {
-    private String name;
+    private final String name;
 
-    private List<Neighbor> neighborList;
+    private final List<Neighbor> neighborList;
 
     public Node(String name) {
         this.name = name;
