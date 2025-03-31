@@ -10,7 +10,7 @@ import java.util.*;
 public class BFS {
 
     public static ResultAdapter search(Node initial, Node target) {
-        Three.clearVisitedNodes();
+        Three.getInstance().clearVisitedNodes();
         Queue<Node> queue = new ArrayDeque<>();
         Map<Node, Node> childAndOwner = new HashMap<>();
 

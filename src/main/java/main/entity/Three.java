@@ -1,47 +1,49 @@
 package main.entity;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Three {
-    public final Node oradea = new Node("oradea");
+    public final Node oradea = new Node("Oradea");
 
-    public final Node zerind = new Node("zerind");
+    public final Node zerind = new Node("Zerind");
 
-    public final Node arad = new Node("arad");
+    public final Node arad = new Node("Arad");
 
-    public final Node sibiu = new Node("sibiu");
+    public final Node sibiu = new Node("Sibiu");
 
-    public final Node timisoara = new Node("timisoara");
+    public final Node timisoara = new Node("Timisoara");
 
-    public final Node lugoj = new Node("lugoj");
+    public final Node lugoj = new Node("Lugoj");
 
-    public final Node mehadia = new Node("mehadia");
+    public final Node mehadia = new Node("Mehadia");
 
-    public final Node drobeta = new Node("drobeta");
+    public final Node drobeta = new Node("Drobeta");
 
-    public final Node craiova = new Node("craiova");
+    public final Node craiova = new Node("Craiova");
 
-    public final Node riminicu_vilcea = new Node("riminicu vilcea");
+    public final Node riminicu_vilcea = new Node("Riminicu Vilcea");
 
-    public final Node pitesti = new Node("pitesti");
+    public final Node pitesti = new Node("Pitesti");
 
-    public final Node fagaras = new Node("fagaras");
+    public final Node fagaras = new Node("Fagaras");
 
-    public final Node bucharest = new Node("bucharest");
+    public final Node bucharest = new Node("Bucharest");
 
-    public final Node giurgiu = new Node("giurgiu");
+    public final Node giurgiu = new Node("Giurgiu");
 
-    public final Node urziceni = new Node("urziceni");
+    public final Node urziceni = new Node("Urziceni");
 
-    public final Node vaslui = new Node("vaslui");
+    public final Node vaslui = new Node("Vaslui");
 
-    public final Node iasi = new Node("iasi");
+    public final Node iasi = new Node("Iasi");
 
-    public final Node neamt = new Node("neamt");
+    public final Node neamt = new Node("Neamt");
 
-    public final Node hirsova = new Node("hirsova");
+    public final Node hirsova = new Node("Hirsova");
 
-    public final Node eforie = new Node("eforie");
+    public final Node eforie = new Node("Eforie");
 
     private static Three instance;
 
@@ -119,21 +121,48 @@ public class Three {
         this.neamt.addNeighbor(iasi, 87);
     }
 
-    public static void clearVisitedNodes() {
-        Three instance = Three.getInstance();
+    public List<Node> getNodeList() {
+        List<Node> nodeList = new ArrayList<>();
+        Field[] fields = this.getClass().getDeclaredFields();
 
-        Field[] fields = instance.getClass().getDeclaredFields();
         for (Field field : fields) {
             if (field.getType().equals(Node.class)) {
                 try {
                     field.setAccessible(true);
-                    Node node = (Node) field.get(instance);
-                    node.setUnvisited();
-                } catch (IllegalAccessException illegalAccessException) {
-
-                    illegalAccessException.printStackTrace();
+                    Node node = (Node) field.get(this);
+                    nodeList.add(node);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
                 }
             }
         }
+
+        return nodeList;
+    }
+
+    public void clearVisitedNodes() {
+        for (Node node : getNodeList()) {
+                node.setUnvisited();
+        }
+    }
+
+    public String[] getNodeNameList() {
+        List<String> nodeNameList = new ArrayList<>();
+
+        for (Node node : getNodeList()) {
+            nodeNameList.add(node.getName());
+        }
+
+        return nodeNameList.toArray(new String[0]);
+    }
+
+    public Node getNodeFromName(String name) {
+        for (Node node : getNodeList()) {
+            if (node.getName().equals(name)) {
+                return node;
+            }
+        }
+
+        return null;
     }
 }

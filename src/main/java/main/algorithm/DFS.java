@@ -18,7 +18,7 @@ public class DFS {
     }
 
     private static ResultAdapter search(Node initial, Node target, Integer maxDepth) {
-        Three.clearVisitedNodes();
+        Three.getInstance().clearVisitedNodes();
         Deque<Node> stack = new ArrayDeque<>();
         Map<Node, Integer> depthMap = new HashMap<>();
         Map<Node, Node> childAndOwner = new HashMap<>();
