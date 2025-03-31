@@ -48,6 +48,7 @@ public class ResultAdapter {
 
     public String buildResultSumDistanceFormatted() {
         List<String> distanceList = new ArrayList<>();
+        if (this.path.isEmpty()) return null;
 
         for (int i = 0; i < this.path.size() - 1; i++) {
             Node current = this.path.get(i);
@@ -55,6 +56,9 @@ public class ResultAdapter {
 
             distanceList.add(String.valueOf(current.getNeighbor(next).getDistance()));
         }
+
+        if (distanceList.isEmpty()) return "0";
+        if (distanceList.size() == 1) return distanceList.getFirst();
 
         return String.join(" + ", distanceList) + " = " + getSumTotalDistance();
     }
