@@ -159,6 +159,7 @@ public class SearchUI {
 
     private static ResultAdapter algorithmHandler(Algorithm algorithm, Node initial, Node target, Integer limit) {
         return switch (algorithm) {
+            case ASTAR -> AStar.search(initial, target, target.calculateHeuristics());
             case BFS -> BFS.search(initial, target);
             case BIDIRECTIONAL -> Bidirectional.search(initial, target);
             case DFS -> DFS.search(initial, target);

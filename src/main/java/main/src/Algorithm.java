@@ -1,6 +1,7 @@
 package main.src;
 
 public enum Algorithm {
+    ASTAR(false),
     BFS(false),
     BIDIRECTIONAL(false),
     DFS(false),
