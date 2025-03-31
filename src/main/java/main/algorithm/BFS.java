@@ -10,6 +10,7 @@ import java.util.*;
 public class BFS {
 
     public static ResultAdapter search(Node initial, Node target) {
+        Three.clearVisitedNodes();
         Queue<Node> queue = new ArrayDeque<>();
         Map<Node, Node> childAndOwner = new HashMap<>();
 
@@ -20,7 +21,7 @@ public class BFS {
         while (!queue.isEmpty()) {
             Node process = queue.poll();
 
-            if (process.equals(target)) break;
+            if (process.equals(target)) ResultAdapter.fromTargetNode(childAndOwner, target);
 
             for (Neighbor neighbor : process.getNeighborList()) {
                 Node next = neighbor.getNode();
@@ -32,7 +33,6 @@ public class BFS {
             }
         }
 
-        Three.clearVisitedNodes();
-        return ResultAdapter.fromTargetNode(childAndOwner, target);
+        return null;
     }
 }
