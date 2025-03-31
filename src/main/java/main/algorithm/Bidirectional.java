@@ -58,17 +58,17 @@ public class Bidirectional {
 
         if (meetingNode == null) return new ResultAdapter(Collections.emptyList());
 
-        Node currentNode = meetingNode;
-        while (currentNode != null) {
-            path.addFirst(currentNode);
-            currentNode = forwardVisited.get(currentNode);
-        }
+        ResultAdapter forwardResult = ResultAdapter.fromTargetNode(forwardVisited, meetingNode);
+        List<Node> forwardPath = forwardResult.getPath();
 
-        currentNode = backwardVisited.get(meetingNode);
-        while (currentNode != null) {
-            path.add(currentNode);
-            currentNode = backwardVisited.get(currentNode);
-        }
+        ResultAdapter backwardResult = ResultAdapter.fromTargetNode(backwardVisited, meetingNode);
+        List<Node> backwardPath = backwardResult.getPath();
+        backwardPath.remove(meetingNode);
+        Collections.reverse(backwardPath);
+
+
+        path.addAll(forwardPath);
+        path.addAll(backwardPath);
 
         return new ResultAdapter(path);
     }
