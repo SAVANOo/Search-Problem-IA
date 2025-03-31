@@ -18,9 +18,7 @@ public class DFS {
 
         while (!stack.isEmpty()) {
             Node process = stack.pop();
-            if (process.equals(target)) {
-                break;
-            }
+            if (process.equals(target)) break;
 
             for (Neighbor neighbor : process.getNeighborList()) {
                 Node next = neighbor.getNode();
