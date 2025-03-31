@@ -1,5 +1,7 @@
 package main.entity;
 
+import java.lang.reflect.Field;
+
 public class Three {
     public final Node oradea = new Node("oradea");
 
@@ -115,5 +117,23 @@ public class Three {
         this.iasi.addNeighbor(vaslui, 92);
 
         this.neamt.addNeighbor(iasi, 87);
+    }
+
+    public static void clearVisitedNodes() {
+        Three instance = Three.getInstance();
+
+        Field[] fields = instance.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getType().equals(Node.class)) {
+                try {
+                    field.setAccessible(true);
+                    Node node = (Node) field.get(instance);
+                    node.setUnvisited();
+                } catch (IllegalAccessException illegalAccessException) {
+
+                    illegalAccessException.printStackTrace();
+                }
+            }
+        }
     }
 }
