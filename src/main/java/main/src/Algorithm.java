@@ -6,6 +6,7 @@ public enum Algorithm {
     DFS(false),
     DLS(true),
     IDDFS(true),
+    GFS(false),
     UCS(false);
 
     private final boolean supportsLimit;

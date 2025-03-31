@@ -164,6 +164,7 @@ public class SearchUI {
             case DFS -> DFS.search(initial, target);
             case DLS -> DFS.searchWithDeepLimit(initial, target, limit);
             case IDDFS -> IDDFS.searchWithDeepLimit(initial, target, limit);
+            case GFS -> GFS.searchWithoutHeuristic(initial, target);
             case UCS -> UCS.search(initial, target);
         };
     }
