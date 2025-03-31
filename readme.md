@@ -66,23 +66,29 @@ Os algoritmos podem ser utilizados chamando os métodos estáticos das respectiv
 Node initial = new Node("oradea");
 Node target = new Node("arad");
 
-// Busca Bidirecional
-ResultAdapter result = Bidirectional.search(initial, target);
+// Busca A*
+ResultAdapter resultASTAR = AStar.search(initial, target, target.calculateHeuristics());
 
-// Busca em Largura
+// Busca em extensão (amplitude) - BFS 
 ResultAdapter resultBFS = BFS.search(initial, target);
 
-// Busca em Profundidade
+// Busca direcional - BIDIRECTIONAL 
+ResultAdapter resultBIDIRECTIONAL = Bidirectional.search(initial, target);
+
+// Busca em profundidade – DFS 
 ResultAdapter resultDFS = DFS.search(initial, target);
 
-// Busca A* (A Star)
-ResultAdapter resultAStar = AStar.search(initial, target, heuristicMap);
+// Busca em profundidade limitada – DLS
+ResultAdapter resultDLS = DFS.searchWithDeepLimit(initial, target, limit);
 
-// Busca de Custo Uniforme
+// Busca de aprofundamento Iterativo – IDDFS 
+ResultAdapter resultIDDFS = IDDFS.search(initial, target);
+
+// Busca gulosa – GFS
+ResultAdapter resultGFS = GFS.searchWithoutHeuristic(initial, target);
+
+// Busca de custo uniforme – UCS
 ResultAdapter resultUCS = UCS.search(initial, target);
-
-// Busca Gulosa
-ResultAdapter resultGFS = GFS.search(initial, target, heuristicMap);
 ```
 
 ## 🧠 Algoritmos Implementados
