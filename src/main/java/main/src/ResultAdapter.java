@@ -15,6 +15,10 @@ public class ResultAdapter {
         this.path = path;
     }
 
+    public List<Node> getPath() {
+        return this.path;
+    }
+
     public static ResultAdapter fromTargetNode(Map<Node, Node> childAndOwner, Node target) {
         List<Node> path = new LinkedList<>();
 
