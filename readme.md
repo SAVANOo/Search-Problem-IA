@@ -1,12 +1,15 @@
 # Projeto de Problema de Busca
 
+### 📄 Documentação
+- Artigo contendo a justificativa dos algoritmos implementados, detalhes sobre a teoria por trás de cada algoritmo e suas aplicações no mundo real:
+
+**[COMPARAÇÃO DE ALGORITMOS DE BUSCA EM INTELIGÊNCIA ARTIFICIAL NO ROMANIA MAP PROBLEM.pdf](/COMPARAÇÃO%20DE%20ALGORITMOS%20DE%20BUSCA%20EM%20INTELIGÊNCIA%20ARTIFICIAL%20NO%20ROMANIA%20MAP%20PROBLEM.pdf)**
+
 Este projeto implementa diversos algoritmos de busca estudados na disciplina de Inteligência Artificial do sétimo período do curso de Ciência da Computação. O objetivo é fornecer uma implementação de algoritmos clássicos de busca em grafos, aplicáveis em diversas áreas da computação, como planejamento, roteamento e resolução de problemas de otimização.
 
+![app_image.png](assets%2Fapp_image.png)
+
 ## 📂 Estrutura do Projeto
-
-### 📄 Documentação
-- **`/Problemas De Busca.pdf`**: Artigo contendo a justificativa dos algoritmos implementados, detalhes sobre a teoria por trás de cada algoritmo e suas aplicações no mundo real.
-
 ### 📁 Código-fonte
 #### 🔹 `src/main/java/main/algorithm/`
 Contém as implementações dos algoritmos de busca:
