@@ -2,6 +2,7 @@ package main.algorithm;
 
 import main.entity.Neighbor;
 import main.entity.Node;
+import main.entity.Three;
 import main.src.ResultAdapter;
 
 import java.util.*;
@@ -20,10 +21,9 @@ public class DFS {
         Deque<Node> stack = new ArrayDeque<>();
         Map<Node, Integer> depthMap = new HashMap<>();
         Map<Node, Node> childAndOwner = new HashMap<>();
-        List<Node> visited = new LinkedList<>();
 
         stack.push(initial);
-        visited.add(initial);
+        initial.setVisited();
         depthMap.put(initial, 0);
 
         while (!stack.isEmpty()) {
@@ -35,15 +35,16 @@ public class DFS {
 
             for (Neighbor neighbor : process.getNeighborList()) {
                 Node next = neighbor.getNode();
-                if (visited.contains(next)) continue;
+                if (next.isVisited()) continue;
 
                 childAndOwner.put(next, process);
-                visited.add(next);
+                next.setVisited();
                 stack.push(next);
                 depthMap.put(next, currentDepth + 1);
             }
         }
 
+        Three.clearVisitedNodes();
         return ResultAdapter.fromTargetNode(childAndOwner, target);
     }
 }

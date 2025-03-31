@@ -2,6 +2,7 @@ package main.algorithm;
 
 import main.entity.Neighbor;
 import main.entity.Node;
+import main.entity.Three;
 import main.src.ResultAdapter;
 
 import java.util.*;
@@ -10,11 +11,10 @@ public class BFS {
 
     public static ResultAdapter search(Node initial, Node target) {
         Queue<Node> queue = new ArrayDeque<>();
-        List<Node> visitedList = new LinkedList<>();
         Map<Node, Node> childAndOwner = new HashMap<>();
 
         queue.add(initial);
-        visitedList.add(initial);
+        initial.setVisited();
         childAndOwner.put(initial, null);
 
         while (!queue.isEmpty()) {
@@ -24,14 +24,15 @@ public class BFS {
 
             for (Neighbor neighbor : process.getNeighborList()) {
                 Node next = neighbor.getNode();
-                if (visitedList.contains(next)) continue;
+                if (next.isVisited()) continue;
 
-                visitedList.add(next);
+                next.setVisited();
                 queue.add(next);
                 childAndOwner.put(next, process);
             }
         }
 
+        Three.clearVisitedNodes();
         return ResultAdapter.fromTargetNode(childAndOwner, target);
     }
 }
