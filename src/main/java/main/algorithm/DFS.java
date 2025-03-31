@@ -18,6 +18,7 @@ public class DFS {
     }
 
     private static ResultAdapter search(Node initial, Node target, Integer maxDepth) {
+        Three.clearVisitedNodes();
         Deque<Node> stack = new ArrayDeque<>();
         Map<Node, Integer> depthMap = new HashMap<>();
         Map<Node, Node> childAndOwner = new HashMap<>();
@@ -30,7 +31,7 @@ public class DFS {
             Node process = stack.pop();
             int currentDepth = depthMap.get(process);
 
-            if (process.equals(target)) break;
+            if (process.equals(target)) return ResultAdapter.fromTargetNode(childAndOwner, target);
             if (maxDepth != -1 && currentDepth >= maxDepth) continue;
 
             for (Neighbor neighbor : process.getNeighborList()) {
@@ -44,7 +45,6 @@ public class DFS {
             }
         }
 
-        Three.clearVisitedNodes();
-        return ResultAdapter.fromTargetNode(childAndOwner, target);
+        return null;
     }
 }
