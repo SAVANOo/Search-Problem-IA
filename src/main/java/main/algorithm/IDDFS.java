@@ -19,10 +19,13 @@ public class IDDFS {
         Integer currentDepth = 0;
 
         while (true) {
-            if (currentDepth >= maxDepth && maxDepth != WITHOUT_LIMIT) return null;
+            if (currentDepth >= maxDepth && maxDepth != WITHOUT_LIMIT) break;
+            currentDepth++;
 
             ResultAdapter result = DFS.searchWithDeepLimit(initial, target, currentDepth);
             if (result != null) return result;
         }
+
+        return null;
     }
 }
