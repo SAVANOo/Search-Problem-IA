@@ -4,35 +4,31 @@ import main.entity.Neighbor;
 import main.entity.Node;
 import main.src.ResultAdapter;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BFS {
 
     public static ResultAdapter search(Node initial, Node target) {
-        List<Node> queue = new LinkedList<>();
+        Queue<Node> queue = new ArrayDeque<>();
         List<Node> visitedList = new LinkedList<>();
-        Map<Node, Node> childAndOwner = new HashMap<Node, Node>();
+        Map<Node, Node> childAndOwner = new HashMap<>();
 
-        queue.addLast(initial);
+        queue.add(initial);
         visitedList.add(initial);
         childAndOwner.put(initial, null);
 
         while (!queue.isEmpty()) {
-            Node process = queue.removeFirst();
+            Node process = queue.poll();
 
             if (process.equals(target)) break;
 
-            for (Neighbor next : process.getNeighborList()) {
-                Node nextNode = next.getNode();
+            for (Neighbor neighbor : process.getNeighborList()) {
+                Node next = neighbor.getNode();
+                if (visitedList.contains(next)) continue;
 
-                if (!visitedList.contains(nextNode)) {
-                    visitedList.add(nextNode);
-                    queue.addLast(nextNode);
-                    childAndOwner.put(nextNode, process);
-                }
+                visitedList.add(next);
+                queue.add(next);
+                childAndOwner.put(next, process);
             }
         }
 
