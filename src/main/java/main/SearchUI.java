@@ -26,6 +26,7 @@ public class SearchUI {
     private JLabel limitLabel;
     private JComboBox<Algorithm> algorithmBox;
     private JTextArea resultArea;
+    private JTextArea resultDistanceArea;
     private JLabel mapLabel;
     private ImageIcon mapIcon;
     private BufferedImage mapImage;
@@ -41,7 +42,7 @@ public class SearchUI {
 
         GridBagConstraints gbc = new GridBagConstraints();
 
-        JPanel inputPanel = new JPanel(new GridLayout(5, 2));
+        JPanel inputPanel = new JPanel(new GridLayout(6, 2));
         inputPanel.add(new JLabel("Ponto inicial:"));
         initialNodeBox = new JComboBox<>(three.getNodeNameList());
         inputPanel.add(initialNodeBox);
@@ -85,6 +86,14 @@ public class SearchUI {
         resultArea.setPreferredSize(new Dimension(750, 120));
         resultArea.setLineWrap(true);
         resultArea.setWrapStyleWord(true);
+
+        resultDistanceArea = new JTextArea();
+        resultDistanceArea.setEditable(false);
+        resultDistanceArea.setPreferredSize(new Dimension(750, 120));
+        resultDistanceArea.setLineWrap(true);
+        resultDistanceArea.setWrapStyleWord(true);
+        JScrollPane resultDistanceScrollPane = new JScrollPane(resultDistanceArea);
+
         JScrollPane resultScrollPane = new JScrollPane(resultArea);
 
         gbc.gridx = 0;
@@ -92,6 +101,9 @@ public class SearchUI {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         window.add(resultScrollPane, gbc);
+
+        gbc.gridy = 2;
+        window.add(resultDistanceScrollPane, gbc);
 
         try {
             mapImage = ImageIO.read(new File("assets/map.png"));
@@ -101,8 +113,12 @@ public class SearchUI {
             System.err.println("Problemas ao carregar imagem, cheque o caminho.");
         }
 
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.BOTH;
+        window.add(mapLabel, gbc);
+
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.BOTH;
         window.add(mapLabel, gbc);
@@ -156,8 +172,10 @@ public class SearchUI {
     private void showResult(ResultAdapter result) {
         if (result == null || result.getPath().isEmpty()) {
             resultArea.setText("Nenhum caminho encontrado.");
+            resultDistanceArea.setText("Não foi possível somar as distancias");
         } else {
             resultArea.setText(result.buildFormattedResultPath());
+            resultDistanceArea.setText(result.buildResultSumDistanceFormatted());
         }
     }
 }
