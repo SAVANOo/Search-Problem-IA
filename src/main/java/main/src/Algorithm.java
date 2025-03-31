@@ -5,6 +5,7 @@ public enum Algorithm {
     DFS(false),
     DLS(true),
     IDDFS(true),
+    UCS(false),
     BIDIRECTIONAL(false);
 
     private final boolean supportsLimit;

@@ -9,10 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import main.algorithm.BFS;
-import main.algorithm.DFS;
-import main.algorithm.IDDFS;
-import main.algorithm.Bidirectional;
+import main.algorithm.*;
 import main.entity.Node;
 import main.src.Algorithm;
 import main.src.ResultAdapter;
@@ -166,6 +163,7 @@ public class SearchUI {
             case DFS -> DFS.search(initial, target);
             case DLS -> DFS.searchWithDeepLimit(initial, target, limit);
             case IDDFS -> IDDFS.searchWithDeepLimit(initial, target, limit);
+            case UCS -> UCS.search(initial, target);
             case BIDIRECTIONAL -> Bidirectional.search(initial, target);
         };
     }
