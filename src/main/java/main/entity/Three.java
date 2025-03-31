@@ -142,7 +142,7 @@ public class Three {
 
     public void clearVisitedNodes() {
         for (Node node : getNodeList()) {
-                node.setUnvisited();
+            node.setUnvisited();
         }
     }
 
