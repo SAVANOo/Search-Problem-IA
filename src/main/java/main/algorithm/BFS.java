@@ -21,7 +21,7 @@ public class BFS {
         while (!queue.isEmpty()) {
             Node process = queue.poll();
 
-            if (process.equals(target)) ResultAdapter.fromTargetNode(childAndOwner, target);
+            if (process.equals(target)) return ResultAdapter.fromTargetNode(childAndOwner, target);
 
             for (Neighbor neighbor : process.getNeighborList()) {
                 Node next = neighbor.getNode();
