@@ -2,7 +2,8 @@ package main.src;
 
 public enum Algorithm {
     BFS(false),
-    DFS(true),
+    DFS(false),
+    DLS(true),
     IDDFS(true),
     BIDIRECTIONAL(false);
 
