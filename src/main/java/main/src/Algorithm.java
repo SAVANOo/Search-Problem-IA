@@ -2,11 +2,11 @@ package main.src;
 
 public enum Algorithm {
     BFS(false),
+    BIDIRECTIONAL(false),
     DFS(false),
     DLS(true),
     IDDFS(true),
-    UCS(false),
-    BIDIRECTIONAL(false);
+    UCS(false);
 
     private final boolean supportsLimit;
 

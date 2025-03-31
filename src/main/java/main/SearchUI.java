@@ -160,11 +160,11 @@ public class SearchUI {
     private static ResultAdapter algorithmHandler(Algorithm algorithm, Node initial, Node target, Integer limit) {
         return switch (algorithm) {
             case BFS -> BFS.search(initial, target);
+            case BIDIRECTIONAL -> Bidirectional.search(initial, target);
             case DFS -> DFS.search(initial, target);
             case DLS -> DFS.searchWithDeepLimit(initial, target, limit);
             case IDDFS -> IDDFS.searchWithDeepLimit(initial, target, limit);
             case UCS -> UCS.search(initial, target);
-            case BIDIRECTIONAL -> Bidirectional.search(initial, target);
         };
     }
 
