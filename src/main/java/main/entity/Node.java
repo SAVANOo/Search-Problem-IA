@@ -1,7 +1,9 @@
 package main.entity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Node {
     private final String name;
@@ -47,5 +49,17 @@ public class Node {
         }
 
         return null;
+    }
+
+    public Map<Node, Integer> calculateHeuristics() {
+        Map<Node, Integer> heuristicMap = new HashMap<>();
+        for (Node node : Three.getInstance().getNodeList()) {
+            heuristicMap.put(node, estimateDistance(node, this));
+        }
+        return heuristicMap;
+    }
+
+    private static int estimateDistance(Node node, Node target) {
+        return Math.abs(node.getName().hashCode() - target.getName().hashCode()) % 100;
     }
 }
