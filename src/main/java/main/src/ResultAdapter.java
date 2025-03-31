@@ -3,7 +3,9 @@ package main.src;
 import main.entity.Node;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultAdapter {
@@ -11,6 +13,16 @@ public class ResultAdapter {
 
     public ResultAdapter(List<Node> path) {
         this.path = path;
+    }
+
+    public static ResultAdapter fromTargetNode(Map<Node, Node> childAndOwner, Node target) {
+        List<Node> path = new LinkedList<>();
+
+        for (Node owner = target; owner != null; owner = childAndOwner.get(owner)) {
+            path.addFirst(owner);
+        }
+
+        return new ResultAdapter(path);
     }
 
     public String buildFormattedResultPath() {

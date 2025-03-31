@@ -30,16 +30,6 @@ public class DFS {
             }
         }
 
-        return buildResult(childAndOwner, target);
-    }
-
-    private static ResultAdapter buildResult(Map<Node, Node> childAndOwner, Node target) {
-        List<Node> path = new LinkedList<>();
-
-        for (Node owner = target; owner != null; owner = childAndOwner.get(owner)) {
-            path.addFirst(owner);
-        }
-
-        return new ResultAdapter(path);
+        return ResultAdapter.fromTargetNode(childAndOwner, target);
     }
 }
