@@ -8,9 +8,23 @@ public class Node {
 
     private final List<Neighbor> neighborList;
 
+    private Boolean isVisited = false;
+
     public Node(String name) {
         this.name = name;
         this.neighborList = new ArrayList<Neighbor>();
+    }
+
+    public void setVisited() {
+        this.isVisited = true;
+    }
+
+    public void setUnvisited() {
+        this.isVisited = false;
+    }
+
+    public Boolean isVisited() {
+        return this.isVisited;
     }
 
     public String getName() {
