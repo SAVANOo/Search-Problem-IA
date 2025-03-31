@@ -13,8 +13,9 @@ public class UCS {
         Three.getInstance().clearVisitedNodes();
 
         Map<Node, Integer> nodeCosts = new HashMap<>();
-        PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(node -> nodeCosts.getOrDefault(node, Integer.MAX_VALUE)));
+        PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(nodeCosts::get));
         Map<Node, Node> childAndOwner = new HashMap<>();
+        Set<Node> visited = new HashSet<>();
 
         nodeCosts.put(initial, 0);
         queue.add(initial);
@@ -22,6 +23,10 @@ public class UCS {
 
         while (!queue.isEmpty()) {
             Node process = queue.poll();
+
+            if (!visited.add(process)) {
+                continue;
+            }
 
             if (process.equals(target)) {
                 return ResultAdapter.fromTargetNode(childAndOwner, target);
